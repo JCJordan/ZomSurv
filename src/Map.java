@@ -31,11 +31,12 @@ public class Map {
 
     }
 
+
     private float sigmoid(float x) {
         return (float)(1/( 1 + Math.pow(Math.E,(-1*x))));
     }
 
-
+    //these deal with population spread
     private void increment_time_pop_min() {
 
         for(int i = 0;i < map_width;i++) {
@@ -75,7 +76,6 @@ public class Map {
         }
 
     }
-
     private void increment_time_pop_hr() {
 
         for(int i = 0;i < map_width;i++) {
@@ -116,6 +116,7 @@ public class Map {
 
     }
 
+    //these deal with zombie spread
     private void increment_time_inf_min() {
 
         for(int i = 0;i < map_width;i++){
@@ -174,15 +175,6 @@ public class Map {
         }
 
     }
-
-    public void increment_time_min(){
-
-
-        increment_time_inf_min();
-        increment_time_pop_min();
-
-    }
-
     private void increment_time_inf_hr() {
 
         for(int i = 0;i < map_width;i++){
@@ -242,6 +234,14 @@ public class Map {
 
     }
 
+    //these apply the above functions to move time forward
+    public void increment_time_min(){
+
+
+        increment_time_inf_min();
+        increment_time_pop_min();
+
+    }
     public void increment_time_hr(){
 
 
@@ -250,6 +250,7 @@ public class Map {
 
     }
 
+    //this creates and stores a location object
     public void create_location(int x, int y, int type){
 
         Location new_loc = new Location(x,y,type);
