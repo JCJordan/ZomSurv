@@ -3,8 +3,11 @@
  */
 public class MainManager {
 
-    public MainManager(){
+    private EventManager em = new EventManager();
+    private PlayerManager pm;
 
+    public MainManager(){
+        em.readEventList();
     }
 
     public static void main(String args[]){
