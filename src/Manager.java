@@ -13,6 +13,7 @@ public class Manager {
 
     public void updateMap (){
         //HERRO!!
+        //ergregregregrgr
 
     }
 
