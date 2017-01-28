@@ -79,11 +79,10 @@ public class GraphicsManager extends Canvas implements Runnable {
 			}
 		}
 				
-		screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet.png"));
+		screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("resources/sprite_sheet.png"));
 		input = new InputHandler(this);
 		windowHandler = new WindowHandler(this);
-		level = new Level("/levels/alpha_level.png");
-		System.out.println("Input: " + input.toString());
+		level = new Level("resources/levels/map.png");
 		player = new PlayerMP(level, 500, 500, input, "JohnCena", null, -1);
 		player2 = new Player2(level, 0, 0, input, JOptionPane.showInputDialog(this, "Please enter a username for Player2"));
 		level.addEntity(player);
