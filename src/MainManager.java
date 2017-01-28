@@ -1,14 +1,14 @@
 /**
  * Created by JCJordan on 28/01/2017.
  */
-public class Manager {
+public class MainManager {
 
-    public Manager(){
+    public MainManager(){
 
     }
 
     public static void main(String args[]){
-        new Manager();
+        new MainManager();
     }
 
     public void updateMap (){
