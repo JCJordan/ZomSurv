@@ -8,14 +8,11 @@ public class Event {
     private String script;
     private ArrayList<String> actions;
 
-    public Event(String script, ArrayList<String> items, ArrayList<String> actions){
+    public Event(String location, String script, ArrayList<String> items, ArrayList<String> actions){
+        this.location = location;
         this.script = script;
         this.items = new ArrayList<String>(items);
         this.actions = new ArrayList<String>(actions);
-        //infection probability
-        //accessability
-        //population density
-        //parameters e.g. how close to zombies or type of tile.
     }
     public ArrayList<String> getActions(){
         return actions;
