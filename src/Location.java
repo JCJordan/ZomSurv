@@ -3,19 +3,26 @@
  */
 public class Location {
 
-    public int x_pos;
-    public int y_pos;
+    public int xPos;
+    public int yPos;
     public int type;
     public float defence;
     public float strength;
 
     public Location(int x, int y , int t){
 
-        x_pos = x;
-        y_pos = y;
+        xPos = x;
+        yPos = y;
         type = t;
         defence = (float)Math.random();
         strength = (float)Math.random();
 
     }
+
+    public int getXPos(){ return xPos; }
+    public int getyPos(){ return yPos; }
+    public int getType(){ return type; }
+    public float getDefence(){ return defence; }
+    public float getStrength(){ return strength; }
+
 }
