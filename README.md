@@ -1,6 +1,6 @@
 #ZOMSURV Docs
 
-##Structure  
+##Structure
 ###MainManager:  
     updateMap()  
     updateInverntory()  
