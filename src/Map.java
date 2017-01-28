@@ -65,15 +65,15 @@ public class Map{
         }
 
         try{
-            f = new File("res/Output.png");
+            f = new File("src/Graphics/resources/Output.png");
             ImageIO.write(img, "png", f);
         }catch(IOException e){
             System.out.println("Error: " + e);
         }
 
-        for(int l = 0; l < 100;l++){
+        for(int l = 0; l < 10;l++){
 
-            increment_time_min();
+            increment_time_hr();
         }
 
 
@@ -109,7 +109,7 @@ public class Map{
         }
 
         try{
-            f = new File("res/Output2.png");
+            f = new File("src/Graphics/resources/Output2.png");
             ImageIO.write(img, "png", f);
         }catch(IOException e){
             System.out.println("Error: " + e);
@@ -121,7 +121,7 @@ public class Map{
     private void load_accessibility(){
 
         BufferedImage image;
-        File sourceimage = new File("res/accessiblity.png");
+        File sourceimage = new File("src/Graphics/resources/accessibility.png");
         try {
             image = ImageIO.read(sourceimage);
             map_width = image.getWidth();
