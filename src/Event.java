@@ -3,41 +3,15 @@
  */
 import java.util.*;
 public class Event {
+    private String location;
     private ArrayList<String> items;
-    private String script = "";
+    private String script;
     private ArrayList<String> actions;
 
-    public Event(ArrayList<String> params){
-        /*if(params.contains() == "Hospital"){
-            script += "You are in a hospital.";
-            items.add("medicine");
-        }*/
-
-        /*if(params.contains() == "zombies"){
-            script += "You can see zombies"
-        }*/
-
-        /*if(params.contains() == "zombies"){
-            script += "You see zombies near you!"
-        }*/
-
-        /*if(params.contains() == "zombies"){
-            script
-        }*/
-        /*if(params.contains() == "zombies"){
-
-        }*/
-        /*if(params.contains() == "zombies"){
-
-        }*/
-        private ArrayList<String> allActions = new ArrayList<String>();
-        allActions.add("Search");
-        allActions.add("Fight");
-        allActions.add("Run");
-        allActions.add("Sneak");
-        allActions.add("Pray");
-        allActions.add("kys");
-        
+    public Event(String script, ArrayList<String> items, ArrayList<String> actions){
+        this.script = script;
+        this.items = new ArrayList<String>(items);
+        this.actions = new ArrayList<String>(actions);
         //infection probability
         //accessability
         //population density
@@ -51,5 +25,8 @@ public class Event {
     }
     public String getScript(){
         return script;
+    }
+    public String getLocation(){
+        return location;
     }
 }
