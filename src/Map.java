@@ -12,7 +12,8 @@ public class Map {
     public int[][] accessibility;//all less than 1
     public ArrayList<ArrayList<Location>> locations = new ArrayList<ArrayList<Location>>(4);;//0:hospital,1:graveyard,2:church,3:Supermarket
     float zom_speed = 0.5f;//less than 1
-    float trickle = 0.01f;
+    float zom_trickle = 0.01f;
+    float pop_trickle = 0.02f;
     float max_spread_speed = 0.2f;//less than 1
     float pop_speed = 0.6f;//less than 1
 
@@ -37,7 +38,81 @@ public class Map {
 
     private void increment_time_pop_min() {
 
+        for(int i = 0;i < map_width;i++) {
 
+            for (int j = 0; j < map_height; j++) {
+
+
+                int[] x_values = {1,1,0,-1,-1,-1,0,1};
+                int[] y_values = {0,-1,-1,-1,0,1,1,1};
+
+                for(int k = 0;k < x_values.length;k++){
+
+                    int change;
+
+                    if(i + x_values[k] < map_width && i + x_values[k] > -1 && j + y_values[k] < map_height && j + y_values[k] > -1 && infection_density[i + x_values[k]][j + y_values[k]] > infection_density[i][j]){
+
+                        float g = (infection_density[i + x_values[k]][j + y_values[k]] - infection_density[i][j])/infection_density[i + x_values[k]][j + y_values[k]];
+                        change = (int)((g + pop_trickle)*population_density[i + x_values[k]][j + y_values[k]]*pop_speed*accessibility[i][j]);
+
+
+                    }else{
+
+                        change = (int)(pop_trickle*population_density[i + x_values[k]][j + y_values[k]]*pop_speed*accessibility[i][j]);
+                    }
+
+                    if(change/60 > population_density[i + x_values[k]][j + y_values[k]]){
+
+                        change = population_density[i + x_values[k]][j + y_values[k]];
+                    }
+
+                    population_density[i + x_values[k]][j + y_values[k]] -= change/60;
+                    population_density[i][j] += change/60;
+
+                }
+
+            }
+        }
+
+    }
+
+    private void increment_time_pop_hr() {
+
+        for(int i = 0;i < map_width;i++) {
+
+            for (int j = 0; j < map_height; j++) {
+
+
+                int[] x_values = {1,1,0,-1,-1,-1,0,1};
+                int[] y_values = {0,-1,-1,-1,0,1,1,1};
+
+                for(int k = 0;k < x_values.length;k++){
+
+                    int change;
+
+                    if(i + x_values[k] < map_width && i + x_values[k] > -1 && j + y_values[k] < map_height && j + y_values[k] > -1 && infection_density[i + x_values[k]][j + y_values[k]] > infection_density[i][j]){
+
+                        float g = (infection_density[i + x_values[k]][j + y_values[k]] - infection_density[i][j])/infection_density[i + x_values[k]][j + y_values[k]];
+                        change = (int)((g + pop_trickle)*population_density[i + x_values[k]][j + y_values[k]]*pop_speed*accessibility[i][j]);
+
+
+                    }else{
+
+                        change = (int)(pop_trickle*population_density[i + x_values[k]][j + y_values[k]]*pop_speed*accessibility[i][j]);
+                    }
+
+                    if(change/60 > population_density[i + x_values[k]][j + y_values[k]]){
+
+                        change = population_density[i + x_values[k]][j + y_values[k]];
+                    }
+
+                    population_density[i + x_values[k]][j + y_values[k]] -= change;
+                    population_density[i][j] += change;
+
+                }
+
+            }
+        }
 
     }
 
@@ -57,12 +132,12 @@ public class Map {
                     if(i + x_values[k] < map_width && i + x_values[k] > -1 && j + y_values[k] < map_height && j + y_values[k] > -1 && population_density[i + x_values[k]][j + y_values[k]] > population_density[i][j]){
 
                         float g = (population_density[i + x_values[k]][j + y_values[k]] - population_density[i][j])/population_density[i + x_values[k]][j + y_values[k]];
-                        change = (int)((g + trickle)*infection_density[i + x_values[k]][j + y_values[k]]*zom_speed*accessibility[i][j]);
+                        change = (int)((g + zom_trickle)*infection_density[i + x_values[k]][j + y_values[k]]*zom_speed*accessibility[i][j]);
 
 
                     }else{
 
-                        change = (int)(trickle*infection_density[i + x_values[k]][j + y_values[k]]*zom_speed*accessibility[i][j]);
+                        change = (int)(zom_trickle*infection_density[i + x_values[k]][j + y_values[k]]*zom_speed*accessibility[i][j]);
                     }
 
                     if(change/60 > infection_density[i + x_values[k]][j + y_values[k]]){
@@ -104,6 +179,7 @@ public class Map {
 
 
         increment_time_inf_min();
+        increment_time_pop_min();
 
     }
 
@@ -123,12 +199,12 @@ public class Map {
                     if(i + x_values[k] < map_width && i + x_values[k] > -1 && j + y_values[k] < map_height && j + y_values[k] > -1 && population_density[i + x_values[k]][j + y_values[k]] > population_density[i][j]){
 
                         float g = (population_density[i + x_values[k]][j + y_values[k]] - population_density[i][j])/population_density[i + x_values[k]][j + y_values[k]];
-                        change = (int)((g + trickle)*infection_density[i + x_values[k]][j + y_values[k]]*zom_speed*accessibility[i][j]);
+                        change = (int)((g + zom_trickle)*infection_density[i + x_values[k]][j + y_values[k]]*zom_speed*accessibility[i][j]);
 
 
                     }else{
 
-                        change = (int)(trickle*infection_density[i + x_values[k]][j + y_values[k]]*zom_speed*accessibility[i][j]);
+                        change = (int)(zom_trickle*infection_density[i + x_values[k]][j + y_values[k]]*zom_speed*accessibility[i][j]);
                     }
 
                     if(change > infection_density[i + x_values[k]][j + y_values[k]]){
@@ -169,7 +245,8 @@ public class Map {
     public void increment_time_hr(){
 
 
-        increment_time_inf_min();
+        increment_time_inf_hr();
+        increment_time_pop_hr();
 
     }
 
