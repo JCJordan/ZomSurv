@@ -26,5 +26,18 @@ hospital
 You are inside a hospital, it looks like the main corridor has collapse and there isn't another way through.
 Search,Leave
 
+hospitalInner
+You explored the hospital and ventured deeper inside...
+Search,Leave
+
+hospitalInner
+You explored the hospital and ventured deeper inside... a zombie attacks!
+Fight,Run,Pray
+
 church
-You are inside a church. An overwhelming air of calmness came over you as you swung open the churched 
+You are inside a church. An overwhelming air of calmness came over you as you swung open the church doors
+Search,Pray,Leave
+
+woods
+You are inside the woods, the fog wraps itself around the trees and it becomes hard to see
+Search,Explore,Leave
