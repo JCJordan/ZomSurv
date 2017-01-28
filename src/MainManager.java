@@ -1,14 +1,21 @@
+import Graphics.GraphicsManager;
+
 /**
  * Created by JCJordan on 28/01/2017.
  */
-public class Manager {
+public class MainManager {
 
-    public Manager(){
+    private GraphicsManager gm = new GraphicsManager();
+    private EventManager em = new EventManager();
+    private PlayerManager pm;
 
+    public MainManager(){
+        //em.readEventList();
+        gm.start();
     }
 
     public static void main(String args[]){
-        new Manager();
+        new MainManager();
     }
 
     public void updateMap (){

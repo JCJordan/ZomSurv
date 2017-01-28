@@ -1,0 +1,47 @@
+road
+There is a zombie stood on the road!
+Fight,Run,Pray
+~~~
+road
+The the road is clear, nothing is within few except for a few buildings and abandoned cars!
+Search,Leave
+~~~
+null
+A zombie suddenly attacks!
+Fight,Run,Pray
+~~~
+hospital
+You are inside a hospital, blood is splattered against the walls and the sickly green walls make you feel a little nauseus.
+Search,Explore,Leave
+~~~
+hospital
+You are inside a hospital, the lights are flickering and swinging side to side from the ceiling.
+Search,Explore,Leave
+~~~
+hospital
+You are inside a hospital, medicine is strewn accross the floor as if someone had been a fight here.
+Search,Explore,Leave
+~~~
+hospital
+You are inside a hospital, it looks like the main corridor has collapse and there isn't another way through.
+Search,Leave
+~~~
+hospitalInner
+You explored the hospital and ventured deeper inside...
+Search,Leave
+~~~
+hospitalInner
+You explored the hospital and ventured deeper inside... a zombie attacks!
+Fight,Run,Pray
+~~~
+church
+You are inside a church. An overwhelming air of calmness came over you as you swung open the church doors
+Search,Pray,Leave
+~~~
+woods
+You are inside the woods, the fog wraps itself around the trees and it becomes hard to see
+Search,Explore,Leave
+~~~
+woodsInner
+You decided to explorere deeper into the woods. The wind is rustling through the trees almost as if they a whispering. They seem to be whispering a name, Shia LaBeouf
+Search,Leave
