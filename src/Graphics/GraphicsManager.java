@@ -25,11 +25,12 @@ public class GraphicsManager extends Canvas implements Runnable {
 	public static final int HEIGHT = WIDTH/4*3;
 	public static final int SCALE = 3;
 	public static final String NAME = "Game";
-	public static GraphicsManager game;
+	public static GraphicsManager gm;
 	
 	public JFrame frame;
 	
 	public boolean running = false;
+	public boolean loaded = false;
 	public int tickCount = 0;
 	
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -65,7 +66,7 @@ public class GraphicsManager extends Canvas implements Runnable {
 	}
 	
 	public void init() {
-		this.game = this;
+		this.gm = this;
 		int index = 0;
 		for (int r = 0; r < 6; r++) {
 			for (int g = 0; g < 6; g++) {
@@ -84,25 +85,28 @@ public class GraphicsManager extends Canvas implements Runnable {
 		windowHandler = new WindowHandler(this);
 		level = new Level("resources/levels/map.png");
 		player = new PlayerMP(level, 500, 500, input, "JohnCena", null, -1);
-		player2 = new Player2(level, 0, 0, input, JOptionPane.showInputDialog(this, "Please enter a username for Player2"));
+		//player2 = new Player2(level, 0, 0, input, JOptionPane.showInputDialog(this, "Please enter a username for Player2"));
 		level.addEntity(player);
 		Packet00Login loginPacket = new Packet00Login(player.getUsername(), player.x, player.y);
 		if (socketServer != null) {
 			socketServer.addConnection((PlayerMP)player, loginPacket);
 		}
-		level.addEntity(player2);
+		//level.addEntity(player2);
 	//	socketClient.sendData("ping".getBytes());		
 		loginPacket.writeData(socketClient);
+		this.loaded = true;
 	}
 	
 	public synchronized void start() {
 		running = true;
 		new Thread(this).start();	
-		
+
+		/*
 		if (JOptionPane.showConfirmDialog(this, "Do you want to run the server") == 0) {
 			socketServer = new GraphicsServer(this);
 			socketServer.start();
 		}
+		**/
 		
 		socketClient = new GraphicsClient(this, "192.168.0.8");
 		socketClient.start();
@@ -154,6 +158,7 @@ public class GraphicsManager extends Canvas implements Runnable {
 				ticks = 0;
 			}
 		}
+		loaded = false;
 	 			
 	}
 		
