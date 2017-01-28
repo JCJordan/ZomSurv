@@ -1,5 +1,7 @@
 package Graphics.gfx;
 
+import Graphics.GraphicsManager;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -16,7 +18,7 @@ public class SpriteSheet {
 		BufferedImage image = null;
 		
 		try {
-			image = ImageIO.read(SpriteSheet.class.getResourceAsStream(path));
+			image = ImageIO.read(GraphicsManager.class.getResourceAsStream(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

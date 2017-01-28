@@ -1,5 +1,6 @@
 package Graphics.level;
 
+import Graphics.GraphicsManager;
 import Graphics.entities.Entity;
 import Graphics.entities.PlayerMP;
 import Graphics.gfx.Screen;
@@ -35,7 +36,7 @@ public class Level {
 		
 	private void loadLevelFromFile() {
 		try {
-			this.image = ImageIO.read(Level.class.getResource(this.imagePath));
+			this.image = ImageIO.read(GraphicsManager.class.getResource(this.imagePath));
 			this.width = image.getWidth();
 			this.height = image.getHeight();
 			tiles = new byte[width * height];
