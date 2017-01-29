@@ -65,7 +65,11 @@ public class GraphicsManager extends Canvas implements Runnable {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	
+
+	public Screen getScreen(){
+	    return screen;
+    }
+
 	public void init() {
 		this.gm = this;
 		int index = 0;
@@ -132,26 +136,26 @@ public class GraphicsManager extends Canvas implements Runnable {
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / nsPerTick;
-			lastTime = now;			
+			lastTime = now;
 			boolean shouldRender = true;
-			
+
 			while (delta >= 1) {
 				ticks++;
 				tick();
 				delta -= 1;
 				shouldRender = true;
 			}
-			
+
 			try {
 				Thread.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			}			
+			}
 			if(shouldRender) {
 				frames++;
 				render();
 			}
-			
+
 			if (System.currentTimeMillis() - lastTimer >= 1000) {
 				lastTimer += 1000;
 				frame.setTitle(ticks + " ticks, " + frames + " frames");
@@ -162,7 +166,7 @@ public class GraphicsManager extends Canvas implements Runnable {
 		loaded = false;
 	 			
 	}
-		
+
 	public void tick() {
 		tickCount++;							
 		level.tick();
@@ -200,6 +204,18 @@ public class GraphicsManager extends Canvas implements Runnable {
 		bs.show();
 	}
 
+	public void overlayMap(int[][][] map, int height, int width){
+        for(int x = 0; x < height; x++){
+            for(int y = 0; y < width; y++){
+                if(!(map[x][y][0] == 255 && map[x][y][1] == 255 && map[x][y][2] == 255)){
+                    level.setTile(x,y,Tile.BUILDING);
+                }
+            }
+        }
+        gm.render();
+    }
+
+	/*
 	public void addNewArea(int x, int y, String type, int radius){
 		Tile newTile = Tile.VOID;
 		if(type.equalsIgnoreCase("Building")){
@@ -212,6 +228,7 @@ public class GraphicsManager extends Canvas implements Runnable {
 			}
 		}
 	}
+	**/
 
 	/*
 	public static void main(String[] args) throws IOException {

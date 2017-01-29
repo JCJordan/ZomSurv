@@ -1,4 +1,5 @@
 import Graphics.GraphicsManager;
+import Graphics.InputHandler;
 import Graphics.level.tiles.Tile;
 
 import java.util.ArrayList;
@@ -53,6 +54,10 @@ public class MainManager {
     public void update(){
         pm.update_location(gm.player.x/8, gm.player.y/8, map.getLocations(),em);
         map.incrementTime(120);
+        Event event = em.getEvent(pm.getPlayer());
+        InputHandler input = gm.input;
+        pm.processEvent(event, gm.getScreen(), input);
+        gm.overlayMap(map.getRGB(),map.getMapHeight(), map.getMapWidth());
         //map.update()
     }
 

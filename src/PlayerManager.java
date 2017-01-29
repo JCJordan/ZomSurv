@@ -1,3 +1,9 @@
+import Graphics.InputHandler;
+import Graphics.gfx.Colours;
+import Graphics.gfx.Font;
+import Graphics.gfx.Screen;
+import jdk.internal.util.xml.impl.Input;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,10 +27,15 @@ public class PlayerManager {
         newInv.addAll(items);
         player.setInventory(newInv);
     }
-    public void processEvent(Event event){
+    public void processEvent(Event event, Screen screen, InputHandler input){
         System.out.println(event.getScript());
+        Font.render("Correct Answer!", screen, (("Correct Answer!".length() -1) / 2*8), (4*8), Colours.get(-1, -1, -1, 555), 1);
         System.out.println(event.getActions());
-        String currentAction = event.getActions().get(0);
+        //String currentAction = event.getActions().get(0);
+        String currentAction = "";
+        if(input.a.isPressed()){
+            currentAction = event.getActions().get(0);
+        }
         if(currentAction.equalsIgnoreCase("Search")) {
             updateInventory(event.getItems());
             System.out.println("New Inventory: " + player.getInventory());
@@ -61,7 +72,7 @@ public class PlayerManager {
 
             Event event = em.getEvent(player);
             if(event != null) {
-                processEvent(event);
+                //processEvent(event);
             }
 
             for(Location location : locations){

@@ -137,6 +137,12 @@ public class Level {
 		return Tile.tiles[tiles[x + y * width]];
 	}
 
+	public void setTile(int x, int y, Tile tileType){
+		if(x < 0 || x >= width || y < 0 || y >= height){
+			Tile.tiles[tiles[x + y * width]] = tileType;
+		}
+	}
+
 	public void addEntity(Entity entity) {
 		this.getEntities().add(entity);		
 	}
