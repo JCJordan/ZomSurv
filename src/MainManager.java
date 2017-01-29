@@ -7,13 +7,15 @@ import java.util.ArrayList;
  */
 public class MainManager {
 
-    private GraphicsManager gm = new GraphicsManager();
-    private EventManager em = new EventManager();
+    private GraphicsManager gm;
+    private EventManager em;
     private PlayerManager pm;
-    private Map map = new Map();
+    private Map map;
 
     public MainManager(){
-        //em.readEventList();
+        em = new EventManager();
+        pm = new PlayerManager(new Player());
+        gm = new GraphicsManager();
         runGame();
     }
 
@@ -23,7 +25,9 @@ public class MainManager {
 
     public void runGame(){
         gm.start();
-        while(!gm.loaded){}
+        System.out.println("GM Started");
+        while(!gm.loaded){ System.out.print(""); }
+        pm.getPlayer().setLocation(new Location(gm.player.x, gm.player.y, null));
         System.out.println("Graphics Loaded");
         loadMap();
         long lastTime = System.currentTimeMillis();
@@ -43,14 +47,13 @@ public class MainManager {
     }
 
     public void update(){
-        pm.updatePlayerLocation(new Location(gm.player.x, gm.player.y, -1), null ); //map.getLocations();
-        if(em.eventAvailable(pm.getPlayer())){
-            Event event = em.getEvent(pm.getPlayer());
-            if(event != null) {
-                processEvent(event);
-            }
+        pm.updatePlayerLocation(new Location(gm.player.x, gm.player.y, "player"), map.getLocations() );
+        Event event = em.getEvent(pm.getPlayer());
+        if(event != null) {
+            System.out.println(event.getScript());
+            processEvent(event);
         }
-        //map.update();
+        //map.update()
     }
 
     public void processEvent(Event event){
@@ -66,7 +69,7 @@ public class MainManager {
             System.out.println("You fought");
         }
         if(currentAction.equalsIgnoreCase("Run")){
-            if(runProbablity() < Math.random()){
+            if(runProbability() < Math.random()){
                 System.out.println("You got absolutely Raped");
             }
         }
@@ -81,27 +84,12 @@ public class MainManager {
         }
     }
 
-    public double runProbablity(){
+    public double runProbability(){
         return 0.5;
     }
 
-    public void updateMap (){
-        //HERRO!!
-        //Test
-        //ergregregregrgr
-
-    }
-
-    public void getAction(){
-
-    }
-
     public void loadMap(){
-
-    }
-
-    public void getNextScreen(){
-
+        map = new Map();
     }
 
     public void getNextEvent(){

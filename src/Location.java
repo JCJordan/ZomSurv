@@ -5,11 +5,11 @@ public class Location {
 
     private int xPos;
     private int yPos;
-    private int type;
+    private String type;
     private float defence;
     private float strength;
 
-    public Location(int x, int y , int t){
+    public Location(int x, int y , String t){
 
         xPos = x;
         yPos = y;
@@ -21,7 +21,7 @@ public class Location {
 
     public int getXPos(){ return xPos; }
     public int getyPos(){ return yPos; }
-    public int getType(){ return type; }
+    public String getType(){ return type; }
     public float getDefence(){ return defence; }
     public float getStrength(){ return strength; }
 

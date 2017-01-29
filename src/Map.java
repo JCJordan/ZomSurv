@@ -314,7 +314,7 @@ public class Map{
 
 
     //this creates and stores a location object
-    public void createLocation(int x, int y, int type){
+    public void createLocation(int x, int y, String type){
 
         Location newLoc = new Location(x,y,type);
 
