@@ -27,7 +27,7 @@ public class MainManager {
         gm.start();
         System.out.println("GM Started");
         while(!gm.loaded){ System.out.print(""); }
-        pm.getPlayer().setPosition(new Location(gm.player.x, gm.player.y, null));
+        pm.getPlayer().set_pos(gm.player.x, gm.player.y);
         System.out.println("Graphics Loaded");
         loadMap();
         em = new EventManager(map);
@@ -51,47 +51,10 @@ public class MainManager {
     }
 
     public void update(){
-        pm.updatePlayerLocation(new Location(gm.player.x, gm.player.y, "player"), map.getLocations() );
-        pm.getPlayer().setPosition(new Location(gm.player.x /8, gm.player.y /8, "player"));
-        System.out.println(pm.getPlayer().getPosition().toString());
-        Event event = em.getEvent(pm.getPlayer());
-        if(event != null) {
-            processEvent(event);
-        }
+        pm.update_location(gm.player.x, gm.player.y, map.getLocations(),em);
         //map.update()
     }
 
-    public void processEvent(Event event){
-        System.out.println(event.getScript());
-        System.out.println(event.getActions());
-        String currentAction = event.getActions().get(0);
-        if(currentAction.equalsIgnoreCase("Search")) {
-            pm.updateInventory(event.getItems());
-            System.out.println("New Inventory: " + pm.getPlayer().getInventory());
-        }
-        if(currentAction.equalsIgnoreCase("Fight")){
-            //DoShit
-            System.out.println("You fought");
-        }
-        if(currentAction.equalsIgnoreCase("Run")){
-            if(runProbability() < Math.random()){
-                System.out.println("You got absolutely Raped");
-            }
-        }
-        if(currentAction.equalsIgnoreCase("Pray")){
-            if(Math.random() > 1/100){
-                System.out.println("Get fucked son");
-            }
-        }
-        if(currentAction.equalsIgnoreCase("Explore")){
-            //GetEventByName?
-            System.out.println("You Explored");
-        }
-    }
-
-    public double runProbability(){
-        return 0.5;
-    }
 
     public void loadMap(){
         map = new Map();

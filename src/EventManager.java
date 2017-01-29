@@ -17,18 +17,18 @@ public class EventManager{
 
     public Event getEvent(Player player){
 		availableEvents.clear(); //clear current list of available events
-		String location = player.getLocation().getType(); //find where user is
+		String location = player.get_loc_type(); //find where user is
 		for(Event event : events){
 			if(event.getLocation().equalsIgnoreCase(location) || event.getLocation().equalsIgnoreCase("Null")){
 
 				float num;
 				if(event.getEnv() == "Z"){
 
-					num = (float)(event.getProbability()*(map.get_inf_dens_point(player.getPosition().getXPos(),player.getPosition().getYPos())/map.get_inf_av())*0.5);
+					num = (float)(event.getProbability()*(map.get_inf_dens_point(player.get_x_pos(),player.get_y_pos())/map.get_inf_av())*0.5);
 
 				}else{
 
-					num = (float)(event.getProbability()*(map.get_pop_dens_point(player.getPosition().getXPos(),player.getPosition().getYPos())/map.get_pop_av())*0.5);
+					num = (float)(event.getProbability()*(map.get_pop_dens_point(player.get_x_pos(),player.get_y_pos())/map.get_pop_av())*0.5);
 				}
 
 				if(num < Math.random()){
