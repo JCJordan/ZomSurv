@@ -5,20 +5,32 @@ import java.util.*;
 /**
  * Created by JCJordan on 28/01/2017.
  */
-public class EventManager {
+public class EventManager{
 
     private ArrayList<Event> events;
-
+	ArrayList<Event> availableEvents = new ArrayList<Event>();
     public EventManager() {
 		readEventList();
     }
 
-    public boolean eventAvailable(){
-        return true;
+    public ArrayList<Event> eventAvailable(Player player){
+		availableEvents.clear(); //clear current list of available events
+		String location = player.getLocation(); //find where user is
+		for(Event event : events){
+			if(event.getLocation().equals(location)){
+				availableEvents.add(event);
+			}
+		}
+        return availableEvents;
     }
 
     public Event getEvent(Player player){
-		return null;
+		if (availableEvents.size() == 0){
+			return null;
+		}
+		Random rand = new Random();
+		int index = rand.nextInt(availableEvents.size());
+		return availableEvents.get(index);
     }
 
 
@@ -101,7 +113,8 @@ public class EventManager {
 				break;
 				//higher chance but chance of getting injured
 			}	
-			Event actualevent = new Event(event.split("\n")[1], event.split("\n")[2], arrayOfItems ,actions);
+			Event actualEvent = new Event(event.split("\n")[1], event.split("\n")[2], arrayOfItems ,actions);
+			events.add(actualEvent);
 		}
 		
 		//System.out.println(wholeFile);
