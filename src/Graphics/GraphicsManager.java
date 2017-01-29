@@ -205,8 +205,9 @@ public class GraphicsManager extends Canvas implements Runnable {
 		if(type.equalsIgnoreCase("Building")){
 			newTile = Tile.BUILDING;
 		}
-		for(int xDir = -radius; xDir < radius*2; xDir++){
-			for(int yDir = -radius; yDir < radius*2; yDir++){
+		for(int xDir = -radius; xDir < radius; xDir++){
+			for(int yDir = -radius; yDir < radius; yDir++){
+				//System.out.println("X: " + (x+xDir) + " + Y: " + (y+yDir) + " + Tile: " + newTile.toString());
 				level.alterTile(x+xDir, y+yDir, newTile);
 			}
 		}
