@@ -24,11 +24,11 @@ public class EventManager{
 				float num;
 				if(event.getEnv() == "Z"){
 
-					num = event.getProbability()*(map.get_inf_dens_point(player.getPosition().getXPos(),player.getPosition().getyPos())/map.get_inf_av())*0.5;
+					num = (float)(event.getProbability()*(map.get_inf_dens_point(player.getPosition().getXPos(),player.getPosition().getYPos())/map.get_inf_av())*0.5);
 
 				}else{
 
-					num = event.getProbability()*(map.get_pop_dens_point(player.getPosition().getXPos(),player.getPosition().getyPos())/map.get_pop_av())*0.5;
+					num = (float)(event.getProbability()*(map.get_pop_dens_point(player.getPosition().getXPos(),player.getPosition().getYPos())/map.get_pop_av())*0.5);
 				}
 
 				if(num < Math.random()){
@@ -136,22 +136,6 @@ public class EventManager{
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public static void main(String[] arg){
-		EventManager em = new EventManager();
-		
-		
-	}
+
 
 }
