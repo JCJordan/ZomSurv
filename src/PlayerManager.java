@@ -28,9 +28,11 @@ public class PlayerManager {
             if(playerPosition.getXPos() == location.getXPos()){
                 if(playerPosition.getYPos() == playerPosition.getYPos()){
                     player.setLocation(location);
+                    return;
                 }
             }
         }
+        player.setLocation(new Location(playerPosition.getXPos(), playerPosition.getYPos(), "null"));
 
     }
 

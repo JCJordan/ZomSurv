@@ -28,9 +28,12 @@ public class MainManager {
         gm.start();
         System.out.println("GM Started");
         while(!gm.loaded){ System.out.print(""); }
-        pm.getPlayer().setLocation(new Location(gm.player.x, gm.player.y, null));
+        pm.getPlayer().setPosition(new Location(gm.player.x, gm.player.y, null));
         System.out.println("Graphics Loaded");
         loadMap();
+        gm.render();
+        gm.player.x = 511 * 4;
+        gm.player.y = 187 * 4;
         long lastTime = System.currentTimeMillis();
         long currentTime;
         double delta;
@@ -49,6 +52,8 @@ public class MainManager {
 
     public void update(){
         pm.updatePlayerLocation(new Location(gm.player.x, gm.player.y, "player"), map.getLocations() );
+        pm.getPlayer().setPosition(new Location(gm.player.x, gm.player.y, "player"));
+        System.out.println(pm.getPlayer().getPosition().toString());
         Event event = em.getEvent(pm.getPlayer());
         if(event != null) {
             processEvent(event);
@@ -92,7 +97,7 @@ public class MainManager {
         map = new Map();
         ArrayList<Location> locations = map.getLocations();
         for(Location location : locations){
-            gm.addNewArea(location.getXPos(), location.getYPos(), "Building", 3);
+            gm.addNewArea(location.getXPos() * 4, location.getYPos() * 4, "Building", 4);
         }
     }
 
