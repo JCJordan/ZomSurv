@@ -24,11 +24,11 @@ public class Map{
     private int[][] infectionDensity;
     private float[][] accessibility;//all less than 1
     private ArrayList<Location> locations = new ArrayList<Location>();
-    float ZOM_SPEED = 0.1f;//less than 1
-    float ZOM_TRICKLE = 0.3f;
-    float POP_TRICKLE = 0.01f;
-    float MAX_SPREAD_SPEED = 0.2f;//less than 1
-    float POP_SPEED = 0.01f;//less than 1
+    float ZOM_SPEED = 0.4f;//less than 1
+    float ZOM_TRICKLE = 0.1f;
+    float POP_TRICKLE = 0.1f;
+    float MAX_SPREAD_SPEED = 0.02f;//less than 1
+    float POP_SPEED = 0.2f;//less than 1
     int average_pop = 1;
     int average_inf = 1;
 
@@ -64,6 +64,8 @@ public class Map{
         Map map = new Map();
 
         map.addZombies(0,0,10000);
+        //map.addZombies(310,200,10000);
+        map.addZombies(200,310,10000);
 
         JFrame editorFrame = new JFrame("Image Demo");
         editorFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -143,7 +145,7 @@ public class Map{
     }
 
     public void addZombies(int startI, int startJ, int startValue){
-        if(startI >= 0 && startJ<=0 && startI < mapHeight && startJ < mapWidth && accessibility[startI][startJ] == 1.0f){
+        if(startI >= 0 && startJ>=0 && startI < mapHeight && startJ < mapWidth && accessibility[startI][startJ] == 1.0f){
             infectionDensity[startI][startJ] = startValue;
 
         }
@@ -178,7 +180,7 @@ public class Map{
                         rgb[i][j][2]= 0;
                     }else{
                         rgb[i][j][0]= 255;
-                        rgb[i][j][1]= (int) ((proportionInfected*2-1)*255);
+                        rgb[i][j][1]= (int) (255-(proportionInfected*2-1)*255);
                         rgb[i][j][2]= 0;
                     }
                 }
