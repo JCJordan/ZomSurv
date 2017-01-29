@@ -19,11 +19,11 @@ public class Map{
     private int[][] infectionDensity;
     private float[][] accessibility;//all less than 1
     private ArrayList<Location> locations = new ArrayList<Location>();
-    float ZOM_SPEED = 0.1f;//less than 1
-    float ZOM_TRICKLE = 0.3f;
-    float POP_TRICKLE = 0.01f;
-    float MAX_SPREAD_SPEED = 0.2f;//less than 1
-    float POP_SPEED = 0.01f;//less than 1
+    float ZOM_SPEED = 0.7f;//less than 1
+    float ZOM_TRICKLE = 0.1f;
+    float POP_TRICKLE = 0.1f;
+    float MAX_SPREAD_SPEED = 0.05f;//less than 1
+    float POP_SPEED = 0.2f;//less than 1
     int average_pop = 1;
     int average_inf = 1;
 
@@ -67,9 +67,9 @@ public class Map{
             BufferedImage img = new BufferedImage(map.mapWidth, map.mapHeight, BufferedImage.TYPE_INT_RGB);
             int[][][] rgb = map.getRGB();
 
-            System.out.println("" + map.populationDensity[0][0] + " " + map.infectionDensity[0][0] + " " + rgb[0][0][0] + " " + rgb[0][0][1]);
+            //System.out.println("" + map.populationDensity[0][0] + " " + map.infectionDensity[0][0] + " " + rgb[0][0][0] + " " + rgb[0][0][1]);
 
-            /*
+
             for(int i = 0;i < map.mapWidth;i++) {
                 for (int j = 0; j < map.mapHeight; j++) {
                     int argb = (0 << 24) | (rgb[i][j][0] << 16 ) | (rgb[i][j][1]<<8) | (rgb[i][j][2]);
@@ -83,11 +83,8 @@ public class Map{
             }catch(IOException e){
                 System.out.println("Error: " + e);
             }
-            */
 
         }
-
-
 
     }
 
@@ -160,7 +157,7 @@ public class Map{
                         rgb[i][j][2]= 0;
                     }else{
                         rgb[i][j][0]= 255;
-                        rgb[i][j][1]= (int) ((proportionInfected*2-1)*255);
+                        rgb[i][j][1]= (int) (255 - (proportionInfected*2-1)*255);
                         rgb[i][j][2]= 0;
                     }
                 }
