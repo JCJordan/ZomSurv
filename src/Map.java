@@ -19,11 +19,11 @@ public class Map{
     private int[][] infectionDensity;
     private float[][] accessibility;//all less than 1
     private ArrayList<Location> locations = new ArrayList<Location>();
-    float ZOM_SPEED = 0.5f;//less than 1
-    float ZOM_TRICKLE = 0.01f;
-    float POP_TRICKLE = 0.02f;
+    float ZOM_SPEED = 0.1f;//less than 1
+    float ZOM_TRICKLE = 0.3f;
+    float POP_TRICKLE = 0.01f;
     float MAX_SPREAD_SPEED = 0.2f;//less than 1
-    float POP_SPEED = 0.6f;//less than 1
+    float POP_SPEED = 0.01f;//less than 1
     int average_pop = 1;
     int average_inf = 1;
 
@@ -60,88 +60,31 @@ public class Map{
 
         map.addZombies(0,0,10000);
 
-
-        BufferedImage img = new BufferedImage(map.mapWidth, map.mapHeight, BufferedImage.TYPE_INT_ARGB);
-        File f = null;
-        int a; // alpha
-        int r; // red
-        int g; // green
-        int b; // blue
-
-        for(int i = 0;i < map.mapWidth;i++) {
-
-            for (int j = 0; j < map.mapHeight; j++) {
-
-                if(map.infectionDensity[i][j] > 0){
-
-                    a = 256;
-                    r = 256;
-                    g = 256;
-                    b = 256;
-                    int p = (a<<24) | (r<<16) | (g<<8) | b;
-                    img.setRGB(i, j, p);
-                }else{
-
-                    a = 0;
-                    r = 0;
-                    g = 0;
-                    b = 0;
-                    int p = (a<<24) | (r<<16) | (g<<8) | b;
-                    img.setRGB(i, j, p);
-
-                }
-            }
-        }
-
-        try{
-            f = new File("src/Graphics/resources/Output.png");
-            ImageIO.write(img, "png", f);
-        }catch(IOException e){
-            System.out.println("Error: " + e);
-        }
-
         for(int l = 0; l < 100;l++){
-
             map.incrementTime(60);
-        }
 
 
+            BufferedImage img = new BufferedImage(map.mapWidth, map.mapHeight, BufferedImage.TYPE_INT_RGB);
+            int[][][] rgb = map.getRGB();
 
+            System.out.println("" + map.populationDensity[0][0] + " " + map.infectionDensity[0][0] + " " + rgb[0][0][0] + " " + rgb[0][0][1]);
 
-
-        img = new BufferedImage(map.mapWidth, map.mapHeight, BufferedImage.TYPE_INT_ARGB);
-        f = null;
-
-        for(int i = 0;i < map.mapWidth;i++) {
-
-            for (int j = 0; j < map.mapHeight; j++) {
-
-                if(map.infectionDensity[i][j] > 0){
-
-                    a = 50;
-                    r = 256;
-                    g = 256;
-                    b = 256;
-                    int p = (a<<24) | (r<<16) | (g<<8) | b;
-                    img.setRGB(i, j, p);
-                }else{
-
-                    a = 0;
-                    r = 0;
-                    g = 0;
-                    b = 0;
-                    int p = (a<<24) | (r<<16) | (g<<8) | b;
-                    img.setRGB(i, j, p);
-
+            /*
+            for(int i = 0;i < map.mapWidth;i++) {
+                for (int j = 0; j < map.mapHeight; j++) {
+                    int argb = (0 << 24) | (rgb[i][j][0] << 16 ) | (rgb[i][j][1]<<8) | (rgb[i][j][2]);
+                    img.setRGB(i, j, argb );
                 }
             }
-        }
 
-        try{
-            f = new File("src/Graphics/resources/Output2.png");
-            ImageIO.write(img, "png", f);
-        }catch(IOException e){
-            System.out.println("Error: " + e);
+            try{
+                File f = new File("src/Graphics/resources/infection_spread/Output"+l+".png");
+                ImageIO.write(img, "png", f);
+            }catch(IOException e){
+                System.out.println("Error: " + e);
+            }
+            */
+
         }
 
 
@@ -198,7 +141,7 @@ public class Map{
 
     public int[][][] getRGB(){
         int totalPopulation;
-        int proportionInfected;
+        double proportionInfected;
         int[][][] rgb = new int[mapHeight][mapWidth][3];
         for (int i=0;i<mapHeight;i++){
             for(int j=0;j<mapWidth;j++){
@@ -210,14 +153,14 @@ public class Map{
                     rgb[i][j][2]= 255;
                 }
                 else{
-                    proportionInfected = infectionDensity[i][j] / totalPopulation;
+                    proportionInfected = ((double) infectionDensity[i][j]) / totalPopulation;
                     if(proportionInfected < 0.5){
-                        rgb[i][j][0]= proportionInfected*2*255;
+                        rgb[i][j][0]= (int) (proportionInfected*2*255);
                         rgb[i][j][1]= 255;
                         rgb[i][j][2]= 0;
                     }else{
                         rgb[i][j][0]= 255;
-                        rgb[i][j][1]= (proportionInfected*2-1)*255;
+                        rgb[i][j][1]= (int) ((proportionInfected*2-1)*255);
                         rgb[i][j][2]= 0;
                     }
                 }
