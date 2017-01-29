@@ -18,7 +18,7 @@ public class Map{
     private int[][] populationDensity;
     private int[][] infectionDensity;
     private float[][] accessibility;//all less than 1
-    private ArrayList<ArrayList<Location>> locations = new ArrayList<ArrayList<Location>>(4);;//0:hospital,1:graveyard,2:church,3:Supermarket
+    private ArrayList<Location> locations = new ArrayList<Location>();;//0:hospital,1:graveyard,2:church,3:Supermarket
     float ZOM_SPEED = 0.5f;//less than 1
     float ZOM_TRICKLE = 0.01f;
     float POP_TRICKLE = 0.02f;
@@ -318,9 +318,11 @@ public class Map{
 
         Location newLoc = new Location(x,y,type);
 
-        locations.get(type).add(newLoc);
+        locations.add(newLoc);
 
+    }
 
-
+    public ArrayList<Location> getLocations(){
+        return locations;
     }
 }
