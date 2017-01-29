@@ -22,7 +22,7 @@ public class GraphicsManager extends Canvas implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public static final int WIDTH = 400;	
+	public static final int WIDTH = 400;
 	public static final int HEIGHT = WIDTH/4*3;
 	public static final int SCALE = 3;
 	public static final String NAME = "Game";
