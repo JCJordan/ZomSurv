@@ -18,7 +18,7 @@ public class Map{
     private int[][] populationDensity;
     private int[][] infectionDensity;
     private float[][] accessibility;//all less than 1
-    private ArrayList<Location> locations = new ArrayList<Location>();;//0:hospital,1:graveyard,2:church,3:Supermarket
+    private ArrayList<Location> locations = new ArrayList<Location>();
     float ZOM_SPEED = 0.5f;//less than 1
     float ZOM_TRICKLE = 0.01f;
     float POP_TRICKLE = 0.02f;
@@ -31,6 +31,16 @@ public class Map{
     public Map(){
 
         loadAccessibility();
+
+        createLocation((int)511.6589138,(int)187.3574531,"cemetery");
+        createLocation((int)559.6982814,(int)20.96686572,"cemetery");
+        createLocation((int)65.73297856,(int)209.3834976,"caravan");
+        createLocation((int)130.5043043,(int)506.3890994,"caravan");
+        createLocation((int)232.7700736,(int)534.7601176,"library");
+        createLocation((int)312.1364846,(int)242.0023295,"library");
+        createLocation((int)101.4143058,(int)229.0423561,"library");
+        createLocation((int)41.68164032,(int)237.5095861,"leisure");
+        createLocation((int)296.2992644,(int)244.2155706,"leisure");
 
     }
 
