@@ -24,9 +24,19 @@ public class Map{
     float POP_TRICKLE = 0.02f;
     float MAX_SPREAD_SPEED = 0.2f;//less than 1
     float POP_SPEED = 0.6f;//less than 1
+    int average_pop = 0;
+    int average_inf = 0;
 
 
+    public int get_pop_av(){
 
+        return average_pop;
+    }
+
+    public int get_inf_av(){
+
+        return average_inf;
+    }
 
     public Map(){
 
@@ -174,6 +184,7 @@ public class Map{
     public void addZombies(int startI, int startJ, int startValue){
         if(startI >= 0 && startJ<=0 && startI < mapHeight && startJ < mapWidth && accessibility[startI][startJ] == 1.0f){
             infectionDensity[startI][startJ] = startValue;
+
         }
     }
 
@@ -183,6 +194,16 @@ public class Map{
 
     public int[][] getInfectionDensity(){
         return infectionDensity;
+    }
+
+    public int get_inf_dens_point(int x,int y){
+
+        return infectionDensity[x][y];
+    }
+
+    public int get_pop_dens_point(int x,int y){
+
+        return populationDensity[x][y];
     }
 
 
@@ -312,8 +333,13 @@ public class Map{
             for (int j = 0; j < mapHeight; j++) {
                 tPopulationDensity[i][j] = populationDensity[i][j];
                 tInfectionDensity[i][j] = infectionDensity[i][j];
+                average_inf += infectionDensity[i][j];
+                average_pop += populationDensity[i][j];
             }
         }
+
+        average_pop = (int)(average_pop/(mapWidth*mapHeight));
+        average_inf = (int)(average_inf/(mapWidth*mapHeight));
 
         incrementTimeInf(tPopulationDensity,tInfectionDensity, numMin);
         incrementTimePop(tPopulationDensity, numMin);
