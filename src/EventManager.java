@@ -18,12 +18,28 @@ public class EventManager{
 		String location = player.getLocation().getType(); //find where user is
 		for(Event event : events){
 			if(event.getLocation().equalsIgnoreCase(location) || event.getLocation().equalsIgnoreCase("Null")){
-				availableEvents.add(event);
+
+				float num;
+				if(event.getEnv() == "Z"){
+
+					num = event.getProbability()*(map.get_inf_dens_point(player.getPosition().getXPos(),player.getPosition().getyPos())/map.get_inf_av())*0.5;
+
+				}else{
+
+					num = event.getProbability()*(map.get_pop_dens_point(player.getPosition().getXPos(),player.getPosition().getyPos())/map.get_pop_av())*0.5;
+				}
+
+				if(num < Math.random()){
+
+					availableEvents.add(event);
+
+				}
 			}
 		}
 		if (availableEvents.size() == 0){
 			return null;
 		}
+
 		Random rand = new Random();
 		int index = rand.nextInt(availableEvents.size());
 		return availableEvents.get(index);
