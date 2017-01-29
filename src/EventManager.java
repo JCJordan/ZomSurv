@@ -14,7 +14,7 @@ public class EventManager{
     }
 
     public boolean eventAvailable(Player player){
-		Location location = player.getLocation(); //find where user is
+		String location = player.getLocation().getType(); //find where user is
 		for(Event event : events){
 			if(event.getLocation().equals(location)){
 				return true;
@@ -25,7 +25,7 @@ public class EventManager{
 
     public Event getEvent(Player player){
 		availableEvents.clear(); //clear current list of available events
-		Location location = player.getLocation(); //find where user is
+		String location = player.getLocation().getType(); //find where user is
 		for(Event event : events){
 			if(event.getLocation().equals(location)){
 				availableEvents.add(event);
