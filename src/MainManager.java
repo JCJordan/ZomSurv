@@ -40,7 +40,7 @@ public class MainManager {
         while(gm.loaded){
             currentTime = System.currentTimeMillis();
             delta = currentTime - lastTime;
-            if(delta > 10000){
+            if(delta > 1000){
                 update();
                 lastTime = System.currentTimeMillis();
             }
@@ -51,7 +51,8 @@ public class MainManager {
     }
 
     public void update(){
-        pm.update_location(gm.player.x, gm.player.y, map.getLocations(),em);
+        pm.update_location(gm.player.x/8, gm.player.y/8, map.getLocations(),em);
+        map.incrementTime(120);
         //map.update()
     }
 
@@ -64,12 +65,5 @@ public class MainManager {
         //}
     }
 
-    public void getNextEvent(){
-
-    }
-
-    public void loadGraphicClass(){
-
-    }
 
 }

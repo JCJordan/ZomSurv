@@ -31,7 +31,7 @@ public class EventManager{
 					num = (float)(event.getProbability()*(map.get_pop_dens_point(player.get_x_pos(),player.get_y_pos())/map.get_pop_av())*0.5);
 				}
 
-				if(num < Math.random()){
+				if(num > Math.random()){
 
 					availableEvents.add(event);
 
