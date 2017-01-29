@@ -4,6 +4,11 @@ import java.io.File;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
+import javax.swing.*;
+import java.awt.BorderLayout;
 
 
 /**
@@ -60,16 +65,18 @@ public class Map{
 
         map.addZombies(0,0,10000);
 
-        for(int l = 0; l < 100;l++){
+        JFrame editorFrame = new JFrame("Image Demo");
+        editorFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        JLabel jLabel = new JLabel();
+        BufferedImage img = new BufferedImage(map.mapWidth, map.mapHeight, BufferedImage.TYPE_INT_RGB);
+
+        for(int l = 0; l < 1000;l++){
             map.incrementTime(60);
 
-
-            BufferedImage img = new BufferedImage(map.mapWidth, map.mapHeight, BufferedImage.TYPE_INT_RGB);
             int[][][] rgb = map.getRGB();
 
-            System.out.println("" + map.populationDensity[0][0] + " " + map.infectionDensity[0][0] + " " + rgb[0][0][0] + " " + rgb[0][0][1]);
 
-            /*
+
             for(int i = 0;i < map.mapWidth;i++) {
                 for (int j = 0; j < map.mapHeight; j++) {
                     int argb = (0 << 24) | (rgb[i][j][0] << 16 ) | (rgb[i][j][1]<<8) | (rgb[i][j][2]);
@@ -77,13 +84,22 @@ public class Map{
                 }
             }
 
-            try{
-                File f = new File("src/Graphics/resources/infection_spread/Output"+l+".png");
-                ImageIO.write(img, "png", f);
-            }catch(IOException e){
-                System.out.println("Error: " + e);
-            }
-            */
+            ImageIcon imageIcon = new ImageIcon(img);
+
+            jLabel.setIcon(imageIcon);
+            editorFrame.getContentPane().add(jLabel, BorderLayout.CENTER);
+
+            editorFrame.pack();
+            editorFrame.setLocationRelativeTo(null);
+            editorFrame.setVisible(true);
+
+            //try{
+                //File f = new File("src/Graphics/resources/infection_spread/Output"+l+".png");
+                //ImageIO.write(img, "png", f);
+            //}catch(IOException e){
+                //System.out.println("Error: " + e);
+            //}
+            //*/
 
         }
 
