@@ -52,7 +52,7 @@ public class MainManager {
 
     public void update(){
         pm.updatePlayerLocation(new Location(gm.player.x, gm.player.y, "player"), map.getLocations() );
-        pm.getPlayer().setPosition(new Location(gm.player.x /8, gm.player.y /8, "player"));
+        pm.getPlayer().setPosition(new Location(gm.player.x /8, gm.player.y /8, "player")); // divide by 8 to convert from high def graphics to low def tiles
         System.out.println(pm.getPlayer().getPosition().toString());
         Event event = em.getEvent(pm.getPlayer());
         if(event != null) {

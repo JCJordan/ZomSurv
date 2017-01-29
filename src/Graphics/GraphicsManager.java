@@ -50,7 +50,6 @@ public class GraphicsManager extends Canvas implements Runnable {
 	
 	public GraphicsManager() {
 		setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		
 		frame = new JFrame(NAME);
