@@ -89,7 +89,7 @@ public class GraphicsManager extends Canvas implements Runnable {
 		input = new InputHandler(this);
 		windowHandler = new WindowHandler(this);
 		level = new Level("resources/levels/accessibility.png");
-		player = new PlayerMP(level, 500, 500, input, "JohnCena", null, -1);
+		player = new PlayerMP(level, (200), (310), input, "JohnCena", null, -1);
 		//player2 = new Player2(level, 0, 0, input, JOptionPane.showInputDialog(this, "Please enter a username for Player2"));
 		level.addEntity(player);
 		Packet00Login loginPacket = new Packet00Login(player.getUsername(), player.x, player.y);

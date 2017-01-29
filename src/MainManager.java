@@ -32,6 +32,7 @@ public class MainManager {
         System.out.println("Graphics Loaded");
         loadMap();
         map.addZombies(0,0,10000);
+        map.addZombies(200,310,10000);
         em = new EventManager(map);
         gm.render();
         //gm.player.x = 500*8;
@@ -42,7 +43,7 @@ public class MainManager {
         while(gm.loaded){
             currentTime = System.currentTimeMillis();
             delta = currentTime - lastTime;
-            if(delta > 1000){
+            if(delta > 100){
                 update();
                 lastTime = System.currentTimeMillis();
             }

@@ -48,8 +48,6 @@ public class EventManager{
     }
 
     public void readEventList(){
-        //events.add(new Event("data from file"))
-        //TODO: Read events from file into events array
 		String wholeFile = new String();
 		ArrayList<String> arrayOfEvents = new ArrayList<String>();
 		try{
