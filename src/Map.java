@@ -199,20 +199,20 @@ public class Map{
     public int[][][] getRGB(){
         int totalPopulation;
         int proportionInfected;
-        int[][][] rgb = new int[mapHeight][mapWidth][0];
+        int[][][] rgb = new int[mapHeight][mapWidth][3];
         for (int i=0;i<mapHeight;i++){
             for(int j=0;j<mapWidth;j++){
                 totalPopulation = populationDensity[i][j] + infectionDensity[i][j];
                 proportionInfected = infectionDensity[i][j] / totalPopulation;
 
                 if(proportionInfected < 0.5){
-                    rgb[i][j][1]= proportionInfected*2*255;
-                    rgb[i][j][2]= 255;
-                    rgb[i][j][3]= 0;
-                }else{
+                    rgb[i][j][0]= proportionInfected*2*255;
                     rgb[i][j][1]= 255;
-                    rgb[i][j][2]= (proportionInfected*2-1)*255;
-                    rgb[i][j][3]= 0;
+                    rgb[i][j][2]= 0;
+                }else{
+                    rgb[i][j][0]= 255;
+                    rgb[i][j][1]= (proportionInfected*2-1)*255;
+                    rgb[i][j][2]= 0;
                 }
 
             }
