@@ -68,7 +68,7 @@ public class Level {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void alterTile(int x, int y, Tile newTile) {
 		this.tiles[x + y * width] = newTile.getId();
 		image.setRGB(x, y, newTile.getLevelColour());

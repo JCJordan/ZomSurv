@@ -6,6 +6,7 @@ import Graphics.entities.PlayerMP;
 import Graphics.gfx.Screen;
 import Graphics.gfx.SpriteSheet;
 import Graphics.level.Level;
+import Graphics.level.tiles.Tile;
 import Graphics.net.GraphicsClient;
 import Graphics.net.GraphicsServer;
 import Graphics.net.packets.Packet00Login;
@@ -197,6 +198,18 @@ public class GraphicsManager extends Canvas implements Runnable {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		bs.show();
+	}
+
+	public void addNewArea(int x, int y, String type, int radius){
+		Tile newTile = Tile.VOID;
+		if(type.equalsIgnoreCase("Building")){
+			newTile = Tile.BUILDING;
+		}
+		for(int xDir = -radius; xDir < radius*2; xDir++){
+			for(int yDir = -radius; yDir < radius*2; yDir++){
+				level.alterTile(x+xDir, y+yDir, newTile);
+			}
+		}
 	}
 
 	/*

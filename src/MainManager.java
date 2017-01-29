@@ -1,4 +1,5 @@
 import Graphics.GraphicsManager;
+import Graphics.level.tiles.Tile;
 
 import java.util.ArrayList;
 
@@ -50,7 +51,6 @@ public class MainManager {
         pm.updatePlayerLocation(new Location(gm.player.x, gm.player.y, "player"), map.getLocations() );
         Event event = em.getEvent(pm.getPlayer());
         if(event != null) {
-            System.out.println(event.getScript());
             processEvent(event);
         }
         //map.update()
@@ -90,6 +90,10 @@ public class MainManager {
 
     public void loadMap(){
         map = new Map();
+        ArrayList<Location> locations = map.getLocations();
+        for(Location location : locations){
+            gm.addNewArea(location.getXPos(), location.getYPos(), "Building", 3);
+        }
     }
 
     public void getNextEvent(){

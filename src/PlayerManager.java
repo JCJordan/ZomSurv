@@ -26,7 +26,7 @@ public class PlayerManager {
         //TODO: Add tolerance
         for(Location location : locations){
             if(playerPosition.getXPos() == location.getXPos()){
-                if(playerPosition.getyPos() == playerPosition.getyPos()){
+                if(playerPosition.getYPos() == playerPosition.getYPos()){
                     player.setLocation(location);
                 }
             }
