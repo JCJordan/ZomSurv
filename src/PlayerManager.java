@@ -67,13 +67,13 @@ public class PlayerManager {
             for(Location location : locations){
                 if(x == location.getXPos()){
                     if(y == location.getYPos()){
-                        player.set_pos(x/8,y/8);
+                        player.set_pos(x,y);
                         player.set_loc_type(location.getType());
                         return;
                     }
                 }
             }
-            player.set_pos(x/8,y/8);
+            player.set_pos(x,y);
             player.set_loc_type("null");
 
         }
