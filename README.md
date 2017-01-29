@@ -37,3 +37,13 @@
     getStrength()
 ###Graphics:  
     A lot of crap...
+
+##Key for building types:
+    -1 Player
+    0 null
+    1 road
+    2 church
+    3 hospital
+    4 hospitalInner
+    5 woods
+    6 woodsInner
