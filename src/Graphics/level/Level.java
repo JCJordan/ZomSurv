@@ -132,15 +132,22 @@ public class Level {
 	}
 	
 	public Tile getTile(int x, int y) {
-		if(x < 0 || x >= width || y < 0 || y >= height) 
-		return Tile.VOID;
+
+		if(x < 0 || x >= width || y < 0 || y >= height) {
+			return Tile.VOID;
+		}
 		return Tile.tiles[tiles[x + y * width]];
+
 	}
 
 	public void setTile(int x, int y, Tile tileType){
-		if(x < 0 || x >= width || y < 0 || y >= height){
-			Tile.tiles[tiles[x + y * width]] = tileType;
+		//System.out.println("BREAK: " + tileType);
+		//System.out.println(Tile.tiles[tiles[x + y * width]]);
+		if(!(x < 0 || x >= width || y < 0 || y >= height)) {
+			tiles[x + y * width] = tileType.getId();
 		}
+
+		//System.out.println(Tile.tiles[tiles[x + y * width]]);
 	}
 
 	public void addEntity(Entity entity) {

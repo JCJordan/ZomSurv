@@ -34,8 +34,8 @@ public class MainManager {
         map.addZombies(0,0,10000);
         em = new EventManager(map);
         gm.render();
-        gm.player.x = 500*8;
-        gm.player.y = 500*8;
+        //gm.player.x = 500*8;
+        //gm.player.y = 500*8;
         long lastTime = System.currentTimeMillis();
         long currentTime;
         double delta;
@@ -52,10 +52,13 @@ public class MainManager {
         //gm.render();
     }
 
-    public void update() {
-        pm.update_location(gm.player.x / 8, gm.player.y / 8, map.getLocations(), em);
+    public void update(){
+        pm.update_location(gm.player.x/8, gm.player.y/8, map.getLocations(),em);
         map.incrementTime(60);
-
+        Event event = em.getEvent(pm.getPlayer());
+        InputHandler input = gm.input;
+        //pm.processEvent(event, gm.getScreen(), input);
+        gm.overlayMap(map.getRGB(),map.getMapHeight(), map.getMapWidth());
     }
 
 

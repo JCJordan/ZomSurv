@@ -207,12 +207,21 @@ public class GraphicsManager extends Canvas implements Runnable {
 	public void overlayMap(int[][][] map, int height, int width){
         for(int x = 0; x < height; x++){
             for(int y = 0; y < width; y++){
+                //System.out.println("X: " + x + " Y: " + y);
+
                 if(!(map[x][y][0] == 255 && map[x][y][1] == 255 && map[x][y][2] == 255)){
-                    level.setTile(x,y,Tile.BUILDING);
+                    if(map[x][y][0] == 0 && map[x][y][1] == 255 && map[x][y][2] == 0){
+                        level.setTile(x,y,Tile.GREEN);
+                    } else if(map[x][y][0] == 255 && map[x][y][1] > 150 && map[x][y][2] == 0){
+                        level.setTile(x,y,Tile.RED);
+                    } else {
+                        level.setTile(x,y,Tile.YELLOW);
+                    }
                 }
             }
         }
-        gm.render();
+        level.renderTile(screen,screen.getXOffset(), screen.getYOffset());
+        //gm.render();
     }
 
 	/*
