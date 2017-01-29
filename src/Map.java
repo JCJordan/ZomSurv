@@ -329,6 +329,9 @@ public class Map{
         int[][] tPopulationDensity = new int[mapWidth][mapHeight];
         int[][] tInfectionDensity = new int[mapWidth][mapHeight];
 
+        average_pop = 0;
+        average_inf = 0;
+
         for(int i = 0;i < mapWidth;i++) {
             for (int j = 0; j < mapHeight; j++) {
                 tPopulationDensity[i][j] = populationDensity[i][j];
