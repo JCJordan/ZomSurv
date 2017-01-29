@@ -24,10 +24,10 @@ public class Map{
     private int[][] infectionDensity;
     private float[][] accessibility;//all less than 1
     private ArrayList<Location> locations = new ArrayList<Location>();
-    float ZOM_SPEED = 0.4f;//less than 1
-    float ZOM_TRICKLE = 0.1f;
+    float ZOM_SPEED = 0.8f;//less than 1
+    float ZOM_TRICKLE = 0.2f;
     float POP_TRICKLE = 0.1f;
-    float MAX_SPREAD_SPEED = 0.2f;//less than 1
+    float MAX_SPREAD_SPEED = 0.1f;//less than 1
     float POP_SPEED = 0.2f;//less than 1
     int average_pop = 1;
     int average_inf = 1;
