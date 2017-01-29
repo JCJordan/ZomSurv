@@ -7,6 +7,8 @@ public class Event {
     private ArrayList<String> items;
     private String script;
     private ArrayList<String> actions;
+    private float rarity;
+    private int type;
 
     public Event(String location, String script, ArrayList<String> items, ArrayList<String> actions){
         this.location = location;
