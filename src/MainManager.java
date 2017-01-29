@@ -14,7 +14,6 @@ public class MainManager {
     private Map map;
 
     public MainManager(){
-        em = new EventManager(map);
         pm = new PlayerManager(new Player());
         gm = new GraphicsManager();
         runGame();
@@ -31,9 +30,10 @@ public class MainManager {
         pm.getPlayer().setPosition(new Location(gm.player.x, gm.player.y, null));
         System.out.println("Graphics Loaded");
         loadMap();
+        em = new EventManager(map);
         gm.render();
-        gm.player.x = 511 * 4;
-        gm.player.y = 187 * 4;
+        //gm.player.x = 511 * 4;
+        //gm.player.y = 187 * 4;
         long lastTime = System.currentTimeMillis();
         long currentTime;
         double delta;
