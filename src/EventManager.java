@@ -7,11 +7,12 @@ import java.util.*;
  */
 public class EventManager{
 
-    private ArrayList<Event> events;
+    private ArrayList<Event> events  = new ArrayList<Event>();
 	ArrayList<Event> availableEvents = new ArrayList<Event>();
     public EventManager() {
 		readEventList();
     }
+	
 
     public boolean eventAvailable(Player player){
 		String location = player.getLocation().getType(); //find where user is
@@ -143,7 +144,7 @@ public class EventManager{
 	
 	public static void main(String[] arg){
 		EventManager em = new EventManager();
-		em.readEventList();
+		
 		
 	}
 
