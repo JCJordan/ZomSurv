@@ -9,7 +9,9 @@ public class EventManager{
 
     private ArrayList<Event> events  = new ArrayList<Event>();
 	ArrayList<Event> availableEvents = new ArrayList<Event>();
-    public EventManager() {
+	private Map map;
+    public EventManager(Map map) {
+    	this.map = map;
 		readEventList();
     }
 

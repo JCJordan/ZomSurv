@@ -14,7 +14,7 @@ public class MainManager {
     private Map map;
 
     public MainManager(){
-        em = new EventManager();
+        em = new EventManager(map);
         pm = new PlayerManager(new Player());
         gm = new GraphicsManager();
         runGame();
