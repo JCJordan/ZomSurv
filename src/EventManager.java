@@ -12,23 +12,12 @@ public class EventManager{
     public EventManager() {
 		readEventList();
     }
-	
-
-    public boolean eventAvailable(Player player){
-		String location = player.getLocation().getType(); //find where user is
-		for(Event event : events){
-			if(event.getLocation().equals(location)){
-				return true;
-			}
-		}
-        return false;
-    }
 
     public Event getEvent(Player player){
 		availableEvents.clear(); //clear current list of available events
 		String location = player.getLocation().getType(); //find where user is
 		for(Event event : events){
-			if(event.getLocation().equals(location)){
+			if(event.getLocation().equalsIgnoreCase(location) || event.getLocation().equalsIgnoreCase("Null")){
 				availableEvents.add(event);
 			}
 		}
@@ -40,14 +29,13 @@ public class EventManager{
 		return availableEvents.get(index);
     }
 
-
     public void readEventList(){
         //events.add(new Event("data from file"))
         //TODO: Read events from file into events array
 		String wholeFile = new String();
 		ArrayList<String> arrayOfEvents = new ArrayList<String>();
 		try{
-			BufferedReader file = new BufferedReader(new FileReader(new File("events.txt")));
+			BufferedReader file = new BufferedReader(new FileReader(new File("src/events.txt")));
 			String event = "";
 			for(String x=file.readLine(); x!=null; x=file.readLine()){
 				
@@ -63,7 +51,7 @@ public class EventManager{
 			}
 		}
 		catch(Exception e){
-			
+			System.out.println(e);
 		}
 		for(int x =0; x<arrayOfEvents.size(); x++){
 			String event = arrayOfEvents.get(x);

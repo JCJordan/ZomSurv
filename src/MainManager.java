@@ -36,7 +36,7 @@ public class MainManager {
         while(gm.loaded){
             currentTime = System.currentTimeMillis();
             delta = currentTime - lastTime;
-            if(delta > 1000){
+            if(delta > 10000){
                 update();
                 lastTime = System.currentTimeMillis();
             }
