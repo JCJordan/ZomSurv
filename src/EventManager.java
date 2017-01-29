@@ -108,7 +108,7 @@ public class EventManager{
 				break;
 				//higher chance but chance of getting injured
 			}	
-			Event actualEvent = new Event(event.split("\n")[1], event.split("\n")[2], arrayOfItems ,actions);
+			Event actualEvent = new Event(event.split("\n")[1], event.split("\n")[2], arrayOfItems ,actions, event.split("\n")[4], Integer.parseInt(event.split("\n")[5]));
 			events.add(actualEvent);
 		}
 		
