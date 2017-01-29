@@ -3,11 +3,11 @@
  */
 public class Location {
 
-    public int xPos;
-    public int yPos;
-    public int type;
-    public float defence;
-    public float strength;
+    private int xPos;
+    private int yPos;
+    private int type;
+    private float defence;
+    private float strength;
 
     public Location(int x, int y , int t){
 
