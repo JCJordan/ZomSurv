@@ -20,9 +20,10 @@ public class Location {
     }
 
     public int getXPos(){ return xPos; }
-    public int getyPos(){ return yPos; }
+    public int getYPos(){ return yPos; }
     public String getType(){ return type; }
     public float getDefence(){ return defence; }
     public float getStrength(){ return strength; }
+    public String toString(){ return "X: " + xPos + " + Y: " + yPos; }
 
 }
