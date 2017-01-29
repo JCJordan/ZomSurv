@@ -202,7 +202,7 @@ public class Map{
     }
 
     public int get_pop_dens_point(int x,int y){
-
+        System.out.print("x: " + x + " y: " + y);
         return populationDensity[x][y];
     }
 
