@@ -13,7 +13,17 @@ public class EventManager{
 		readEventList();
     }
 
-    public ArrayList<Event> eventAvailable(Player player){
+    public boolean eventAvailable(Player player){
+		String location = player.getLocation(); //find where user is
+		for(Event event : events){
+			if(event.getLocation().equals(location)){
+				return true;
+			}
+		}
+        return false;
+    }
+
+    public Event getEvent(Player player){
 		availableEvents.clear(); //clear current list of available events
 		String location = player.getLocation(); //find where user is
 		for(Event event : events){
@@ -21,10 +31,6 @@ public class EventManager{
 				availableEvents.add(event);
 			}
 		}
-        return availableEvents;
-    }
-
-    public Event getEvent(Player player){
 		if (availableEvents.size() == 0){
 			return null;
 		}
