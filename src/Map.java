@@ -24,8 +24,8 @@ public class Map{
     float POP_TRICKLE = 0.02f;
     float MAX_SPREAD_SPEED = 0.2f;//less than 1
     float POP_SPEED = 0.6f;//less than 1
-    int average_pop = 0;
-    int average_inf = 0;
+    int average_pop = 1;
+    int average_inf = 1;
 
 
     public int get_pop_av(){
