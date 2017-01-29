@@ -24,7 +24,7 @@ public class EventManager{
 				float num;
 				if(event.getEnv() == "Z"){
 
-					num = (float)(event.getProbability()*(map.get_inf_dens_point(player.getPosition().getXPos(),player.getPosition().getYPos())/map.get_inf_av())*0.5);
+					num = (float)(event.getProbability()*(map.get_inf_dens_point(player.getPosition().getXPos()/4,player.getPosition().getYPos()/4)/map.get_inf_av())*0.5);//4 there to convert between different sized images
 
 				}else{
 
